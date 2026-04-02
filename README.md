@@ -1,25 +1,174 @@
-## TemplateDevEnv
-_For Kotlin see [TemplateDevEnvKt](https://github.com/CleanroomMC/TemplateDevEnvKt)_
 
-Template workspace for modding Minecraft 1.12.2. Licensed under MIT, it is made for public use.
+<p align="center">
+  <img src="docs/RCNAProject.png" width="200">
+</p>
+<h1 align="center">RCNA 1.12.2 Mod Development Template</h1>
+<p align="center">
+Development template for mods used in the <b>RunicCraft: New Ascension</b> ecosystem.
+</p>
+<p align="center">
 
-This template runs on **Java 25**, **Gradle 9.2.1** + **[RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) 2.0.2** + **Forge 14.23.5.2847**.
+![Minecraft](https://img.shields.io/badge/Minecraft-1.12.2-brightgreen)
+![Forge](https://img.shields.io/badge/Forge-14.23.5.2847-orange)
+![Java](https://img.shields.io/badge/Java-25-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-With **coremod and mixin support** that is easy to configure.
+</p>
 
-This Template is for use for RCNA Projects for the RCNA ModPack.
+---
 
-Thanks for CleanroomMC for orginally creating this template allowing mods to be built by modernizing the code
+# Overview
 
-### Instructions:
+This repository provides a **modernized development environment for Minecraft 1.12.2 modding**.
 
-1. Click `use this template` at the top.
-2. Clone the repository that you have created with this template to your local machine.
-3. Make sure IDEA is using Java 25 for Gradle before you sync the project. Verify this by going to IDEA's `Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM`.
-4. Open the project folder in IDEA. When prompted, click "Load Gradle Project" as it detects the `build.gradle`, if you weren't prompted, right-click the project's `build.gradle` in IDEA, select `Link Gradle Project`, after completion, hit `Refresh All` in the gradle tab on the right.
-5. Run gradle tasks such as `runClient` and `runServer` in the IDEA gradle tab, or use the auto-imported run configurations like `1. Run Client`.
+It is based on the CleanroomMC template and configured specifically for **RunicCraft: New Ascension (RCNA)** development.
 
-### Notes:
-- Dependencies script in [gradle/scripts/dependencies.gradle](gradle/scripts/dependencies.gradle), explanations are commented in the file.
-- Publishing script in [gradle/scripts/publishing.gradle](gradle/scripts/publishing.gradle).
-- When writing Mixins on IntelliJ, it is advisable to use latest [MinecraftDev Fork for RetroFuturaGradle](https://github.com/eigenraven/MinecraftDev/releases).
+The template includes support for:
+
+* RetroFuturaGradle
+* Forge 1.12.2
+* Mixins
+* Coremods
+* Modern Gradle workflow for legacy Minecraft versions
+---
+
+# Toolchain
+
+This template runs on the following development stack:
+
+| Component         | Version      |
+| ----------------- | ------------ |
+| Minecraft         | 1.12.2       |
+| Forge             | 14.23.5.2847 |
+| Java              | 25           |
+| Gradle            | 9.2.1        |
+| RetroFuturaGradle | 2.0.2        |
+
+---
+
+# Creating a New Mod
+
+1. Click **Use this template** at the top of the repository.
+2. Clone the generated repository.
+
+```
+git clone <your-new-repo>
+```
+
+3. Open the project in **IntelliJ IDEA**.
+
+Before syncing the project ensure Gradle uses **Java 25**:
+
+```
+Settings → Build Tools → Gradle → Gradle JVM
+```
+
+4. When IntelliJ detects the `build.gradle`, choose:
+
+```
+Load Gradle Project
+```
+
+5. Refresh Gradle in the right-side Gradle panel.
+
+---
+
+## Important: Updating Mod Information
+
+Before developing your mod you must update the mod metadata in `gradle.properties`.
+
+Locate the **Mod Information** section and change:
+
+```
+root_package = net.yourname
+mod_id = yourmodid
+mod_name = Your Mod Name
+```
+
+After editing these values regenerate the project sources:
+
+```
+./gradlew clean
+./gradlew build
+```
+
+This will regenerate the `Tags` class used by the mod entrypoint.
+
+
+# Development Workflow
+
+Common development tasks:
+
+### Run the Minecraft client
+
+```
+gradlew runClient
+```
+
+### Run the dedicated server
+
+```
+gradlew runServer
+```
+
+### Build the mod jar
+
+```
+gradlew build
+```
+
+The compiled mod will be located in:
+
+```
+build/libs/
+```
+
+---
+
+# Project Structure
+
+```
+src/
+ └ main/
+    ├ java/
+    │  └ net/zaltren/rcnatemplate
+    │     └ ModMain.java
+    └ resources/
+       ├ assets/
+       ├ mixins.modid.json
+       └ modid.info
+```
+
+---
+
+# Notes
+
+Dependency configuration:
+
+```
+gradle/scripts/dependencies.gradle
+```
+
+Publishing configuration:
+
+```
+gradle/scripts/publishing.gradle
+```
+
+For mixin development in IntelliJ it is recommended to use:
+
+https://github.com/eigenraven/MinecraftDev/releases
+
+---
+
+# Credits
+
+This template is based on the CleanroomMC development template.
+
+Special thanks to the CleanroomMC team for modernizing the Minecraft 1.12.2 development environment.
+
+---
+
+# License
+
+Licensed under the **MIT License**.
