@@ -1,7 +1,8 @@
-package net.zaltren.rcnatemplate;
+package net.rcna.core;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.rcna.rcnacore.Tags;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 // As this template was created for RCNA Projects
 
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION)
-public class RCNATemplateMod {
+public class RCNACOREMod {
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 
