@@ -2,9 +2,9 @@
 <p align="center">
   <img src="docs/RCNAProject.png" width="200">
 </p>
-<h1 align="center">RCNA 1.12.2 Mod Development Template</h1>
+<h1 align="center">RCNA Core</h1>
 <p align="center">
-Development template for mods used in the <b>RunicCraft: New Ascension</b> ecosystem.
+Core mod for the <b>RunicCraft: New Ascension</b> modpack.
 </p>
 <p align="center">
 
@@ -19,22 +19,33 @@ Development template for mods used in the <b>RunicCraft: New Ascension</b> ecosy
 
 # Overview
 
-This repository provides a **modernized development environment for Minecraft 1.12.2 modding**.
+**RCNA Core** is the central mod for the RunicCraft: New Ascension modpack.
 
-It is based on the CleanroomMC template and configured specifically for **RunicCraft: New Ascension (RCNA)** development.
+It centralizes pack-specific functionality that would otherwise be scattered across configs, scripts, or multiple small mods — ensuring consistent behavior and compatibility across all modpack components.
 
-The template includes support for:
+---
 
-* RetroFuturaGradle
-* Forge 1.12.2
-* Mixins
-* Coremods
-* Modern Gradle workflow for legacy Minecraft versions
+# Features
+
+### Discord Rich Presence
+Custom Discord IPC implementation that displays real-time game state in Discord:
+- Main menu navigation (Main Menu, Selecting a World, Selecting a Server, Settings)
+- In-game status (Singleplayer / Multiplayer, current dimension, biome, health, world/server name)
+- In-game settings detection
+- Gamemode indicator (Survival, Creative, Adventure, Spectator)
+
+### Pack-Specific Tweaks
+Tweaks and adjustments tailored to the RCNA modpack experience. *(Expanded as the mod list is finalized.)*
+
+### Mod Integrations
+Integrations between mods in the pack to ensure consistent and compatible behavior. *(Expanded alongside pack development.)*
+
+### Forked Mod Support
+Internal systems for managing and supporting forked versions of mods when modifications are required for the pack. *(In development.)*
+
 ---
 
 # Toolchain
-
-This template runs on the following development stack:
 
 | Component         | Version      |
 | ----------------- | ------------ |
@@ -46,58 +57,7 @@ This template runs on the following development stack:
 
 ---
 
-# Creating a New Mod
-
-1. Click **Use this template** at the top of the repository.
-2. Clone the generated repository.
-
-```
-git clone <your-new-repo>
-```
-
-3. Open the project in **IntelliJ IDEA**.
-
-Before syncing the project ensure Gradle uses **Java 25**:
-
-```
-Settings → Build Tools → Gradle → Gradle JVM
-```
-
-4. When IntelliJ detects the `build.gradle`, choose:
-
-```
-Load Gradle Project
-```
-
-5. Refresh Gradle in the right-side Gradle panel.
-
----
-
-## Important: Updating Mod Information
-
-Before developing your mod you must update the mod metadata in `gradle.properties`.
-
-Locate the **Mod Information** section and change:
-
-```
-root_package = net.yourname
-mod_id = yourmodid
-mod_name = Your Mod Name
-```
-
-After editing these values regenerate the project sources:
-
-```
-./gradlew clean
-./gradlew build
-```
-
-This will regenerate the `Tags` class used by the mod entrypoint.
-
-
 # Development Workflow
-
-Common development tasks:
 
 ### Run the Minecraft client
 
@@ -131,12 +91,17 @@ build/libs/
 src/
  └ main/
     ├ java/
-    │  └ net/zaltren/rcnatemplate
-    │     └ ModMain.java
+    │  └ net/zaltren/rcna
+    │     ├ RCNACoreMod.java
+    │     └ client/
+    │        └ discord/
+    │           ├ DiscordIPCClient.java
+    │           ├ DiscordRPCManager.java
+    │           └ RPCHandler.java
     └ resources/
        ├ assets/
-       ├ mixins.modid.json
-       └ modid.info
+       ├ mixins.rcna.json
+       └ rcna.info
 ```
 
 ---
@@ -163,9 +128,7 @@ https://github.com/eigenraven/MinecraftDev/releases
 
 # Credits
 
-This template is based on the CleanroomMC development template.
-
-Special thanks to the CleanroomMC team for modernizing the Minecraft 1.12.2 development environment.
+Built on the CleanroomMC development template. Special thanks to the CleanroomMC team for modernizing the Minecraft 1.12.2 development environment.
 
 ---
 
