@@ -65,4 +65,16 @@ dependencies {
     // implementation ('com.google.code.gson:gson:2.8.6') {
     //     transitive = false
     // }
+
+    // InGame Info XML - compile against its API to implement custom tag providers
+    implementation rfg.deobf('curse.maven:ingame-info-xml-225604:2489566')
+    runtimeOnly rfg.deobf('curse.maven:lunatriuscore-225605:2489549')
+
+    // Soft dependencies — compile against their APIs, present at runtime in the modpack
+    implementation rfg.deobf('curse.maven:thaumcraft-223628:2629023')
+    runtimeOnly rfg.deobf('curse.maven:baubles-227083:2518667')
+    implementation rfg.deobf('curse.maven:blood-magic-224791:2778627')
+    runtimeOnly rfg.deobf('curse.maven:guide-api-228832:2645992')
+    implementation rfg.deobf('curse.maven:serene-seasons-291874:2799213')
+    implementation rfg.deobf('curse.maven:tough-as-nails-246391:2710969')
 }
