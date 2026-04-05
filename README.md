@@ -8,6 +8,7 @@ Core mod for the <b>RunicCraft: New Ascension</b> modpack.
 </p>
 <p align="center">
 
+![Version](https://img.shields.io/badge/Version-0.1.0-blue)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.12.2-brightgreen)
 ![Forge](https://img.shields.io/badge/Forge-14.23.5.2847-orange)
 ![Java](https://img.shields.io/badge/Java-25-blue)
