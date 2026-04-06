@@ -10,6 +10,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ---
 
+## [0.1.2] - 2026-04-05
+
+### Added
+
+* RCNA Core now automatically installs default `InGameInfo.xml` and `ingameinfoxml.cfg` into the config folder on first launch if they do not already exist. This ensures the HUD layout and scale/offset settings are applied out of the box without manual setup.
+
+### Fixed
+
+* InGame Info XML config files were not being shipped with the mod, requiring players to manually configure the HUD layout.
+
+---
+
 ## [0.1.1] - 2026-04-05
 
 ### Added

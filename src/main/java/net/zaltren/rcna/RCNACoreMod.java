@@ -48,7 +48,7 @@ public class RCNACoreMod {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+        proxy.postInit();
     }
 
 }

@@ -53,6 +53,19 @@ if (propertyBool('publish_to_curseforge')) {
             }
             mainArtifact tasks.reobfJar.archiveFile.get().asFile, {
                 displayName = "${propertyString('mod_name')} ${propertyString('mod_version')}"
+                relations {
+                    // Required — mod will not function without these
+                    requiredDependency 'ingame-info-xml'
+                    requiredDependency 'lunatriuscore'
+
+                    // Optional — tags for these mods are registered only if they are loaded
+                    optionalDependency 'thaumcraft'
+                    optionalDependency 'blood-magic'
+                    optionalDependency 'serene-seasons'
+                    optionalDependency 'tough-as-nails'
+                    optionalDependency 'gregtech-ce-unofficial'
+                    optionalDependency 'codechicken-lib-1-8'
+                }
                 if (propertyBool('use_mixins')) {
                     relations {
                         requiredDependency 'mixin-booter'

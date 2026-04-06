@@ -1,0 +1,410 @@
+<config>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  TOP LEFT                                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <lines at="topleft">
+
+    <!-- Username + Gamemode + Difficulty + FPS -->
+    <line>
+      <str>{pingicon}{gold}{username} {darkgray}| {gold}{gamemode} {darkgray}| {gold}{difficulty} {darkgray}| {gold}FPS: </str>
+      <op>
+        <str>ge</str>
+        <var>fps</var>
+        <num>60</num><num>45</num><num>30</num><num>15</num><num>0</num>
+        <str>{green}</str><str>{yellow}</str><str>{gold}</str><str>{red}</str><str>{darkred}</str><str/>
+      </op>
+      <var>fps</var>
+    </line>
+
+    <!-- Time: Year / Day / Clock / Dimension -->
+    <line>
+      <icon><str>minecraft:clock</str></icon>
+      <str> {gold}Year {aqua}</str>
+      <add>
+        <round>
+          <div>
+            <sub><var>day</var><modi><var>day</var><num>365</num></modi></sub>
+            <num>365</num>
+          </div>
+          <num>0</num>
+        </round>
+        <num>1</num>
+      </add>
+      <str> {darkgray}| {gold}Day {aqua}</str>
+      <modi><var>day</var><num>365</num></modi>
+      <str> {darkgray}| {gold}Time: {aqua}{mctime12} </str>
+      <if><var>daytime</var><str>{yellow}(Day)</str><str>{gray}(Night)</str></if>
+      <str> {darkgray}| {gold}Exploring the {yellow}{dimension}</str>
+    </line>
+
+    <!-- Environment: Biome + Season + Humidity + Temp -->
+    <line>
+      <icon><str>minecraft:sapling</str><num>1</num></icon>
+      <str> {gold}Biome: {aqua}{biome} {darkgray}| {gold}Season: {green}{seasonsub} {darkgray}| {gold}Humidity: {aqua}{humidity}{gray}% {darkgray}| {gold}Temp: {aqua}</str>
+      <round><div><sub><var>localtemperature</var><num>32</num></sub><num>1.8</num></div><num>0</num></round>
+      <str>{gray}°C {gray}/ {aqua}</str>
+      <round><var>localtemperature</var><num>0</num></round>
+      <str>{gray}°F</str>
+    </line>
+
+    <!-- Weather Cycle: moon phase + current state + time until next change -->
+    <line>
+      <icon><str>minecraft:ender_eye</str></icon>
+      <str> {gold}Lunar Cycle: </str>
+      <op>
+        <str>eq</str>
+        <modi><var>day</var><num>8</num></modi>
+        <num>0</num><num>1</num><num>2</num><num>3</num><num>4</num><num>5</num><num>6</num><num>7</num>
+        <str>{aqua}Full Moon</str>
+        <str>{aqua}Waning Gibbous</str>
+        <str>{aqua}Last Quarter</str>
+        <str>{aqua}Waning Crescent</str>
+        <str>{aqua}New Moon</str>
+        <str>{aqua}Waxing Crescent</str>
+        <str>{aqua}First Quarter</str>
+        <str>{aqua}Waxing Gibbous</str>
+      </op>
+      <str> {darkgray}| {gold}Weather: {gray}It is currently </str>
+      <if>
+        <equal><var>thundering</var><str>true</str></equal>
+        <concat>
+          <icon><str>thaumcraft:textures/aspects/tempestas.png</str></icon>
+          <str> {red}Thunderstorming</str>
+        </concat>
+        <if>
+          <equal><var>issnowing</var><str>true</str></equal>
+          <concat>
+            <icon><str>thaumcraft:textures/aspects/gelum.png</str></icon>
+            <str> {white}Snowing</str>
+          </concat>
+          <if>
+            <equal><var>raining</var><str>true</str></equal>
+            <concat>
+              <icon><str>thaumcraft:textures/aspects/aqua.png</str></icon>
+              <str> {aqua}Raining</str>
+            </concat>
+            <concat>
+              <icon><str>minecraft:clock</str></icon>
+              <str> {yellow}Clear</str>
+            </concat>
+          </if>
+        </if>
+      </if>
+      <str> {darkgray}| {gold}Next Change In: {aqua}{weathertime}</str>
+    </line>
+
+    <!-- World + Position: XYZ / Chunk / Direction / Chunks Loaded / Entities -->
+    <line>
+      <icon><str>minecraft:compass</str></icon>
+      <str> {gold}X: {aqua}{xi} {gold}Y: {aqua}{yi} {gold}Z: {aqua}{zi} {darkgray}| {gold}Chunk: {aqua}{chunkx},{chunkz} {gray}({aqua}{chunkoffsetx},{chunkoffsetz}{gray}) {darkgray}| {gold}Facing: {yellow}{finedirection} {darkgray}| {gold}Chunks Loaded: {aqua}{chunkcount} {darkgray}| {gold}Entities: {aqua}{entitiesrendered}/{entitiestotal}</str>
+    </line>
+
+    <!-- Tough as Nails + Light Levels -->
+    <line>
+      <icon><str>toughasnails:purified_water_bottle</str></icon>
+      <str> {aqua}[TAN] {darkgray}| {gold}Body Temp: </str>
+      <if>
+        <equal><var>tantemp</var><str>Icy</str></equal>
+        <str>{darkaqua}{tantemp}</str>
+        <if>
+          <equal><var>tantemp</var><str>Cold</str></equal>
+          <str>{aqua}{tantemp}</str>
+          <if>
+            <equal><var>tantemp</var><str>Cool</str></equal>
+            <str>{aqua}{tantemp}</str>
+            <if>
+              <equal><var>tantemp</var><str>Mild</str></equal>
+              <str>{green}{tantemp}</str>
+              <if>
+                <equal><var>tantemp</var><str>Warm</str></equal>
+                <str>{yellow}{tantemp}</str>
+                <if>
+                  <equal><var>tantemp</var><str>Hot</str></equal>
+                  <str>{gold}{tantemp}</str>
+                  <str>{red}{tantemp}</str>
+                </if>
+              </if>
+            </if>
+          </if>
+        </if>
+      </if>
+      <str> {darkgray}| {gold}Thirst Level: </str>
+      <op>
+        <str>ge</str>
+        <var>tanthirst</var>
+        <num>15</num><num>8</num><num>1</num><num>0</num>
+        <str>{green}</str><str>{yellow}</str><str>{gold}</str><str>{red}</str><str/>
+      </op>
+      <var>tanthirst</var>
+      <str>{gray}/20 {darkgray}| {gold}Water Saturation: {aqua}{tanhydration} {darkgray}| {gold}Light: </str>
+      <max><var>lighteye</var><num>7.5</num><str>{yellow}</str><str>{red}</str></max>
+      <var>lighteye</var>
+      <str>{darkgray} | {gold}Sky: </str>
+      <max><var>lightsuneye</var><num>7.5</num><str>{yellow}</str><str>{red}</str></max>
+      <var>lightsuneye</var>
+      <str>{darkgray} | {gold}Block: </str>
+      <max><var>lightnosuneye</var><num>7.5</num><str>{yellow}</str><str>{red}</str></max>
+      <var>lightnosuneye</var>
+    </line>
+
+    <!-- Thaumcraft + Blood Magic -->
+    <line>
+      <icon><str>thaumcraft:goggles</str></icon>
+      <str> {darkpurple}[TC] {aqua}Vis: {darkaqua}{tcvis} {aqua}| {darkred}Flux: {red}{tcflux} {darkgray}| {darkred}[BM] {yellow}LP: {gold}{bmlp}{yellow}/{gold}{bmlpmax} {yellow}| T{gold}{bmtier}</str>
+    </line>
+
+    <!-- Thaumcraft: Warp (hidden when all zero) -->
+    <line>
+      <if>
+        <or>
+          <greater><var>tcwarp</var><num>0</num></greater>
+          <greater><var>tcwarptemp</var><num>0</num></greater>
+          <greater><var>tcwarpperm</var><num>0</num></greater>
+        </or>
+        <concat>
+          <icon><str>thaumcraft:textures/aspects/spiritus.png</str></icon>
+          <str> {yellow}Warp: {gold}{tcwarp} {yellow}| Tmp: {gold}{tcwarptemp} {yellow}| Prm: {darkred}{tcwarpperm}</str>
+        </concat>
+      </if>
+    </line>
+
+    <!-- GregTech: Voltage Tier (hidden when no electric items in inventory) -->
+    <line>
+      <if>
+        <not><equal><var>gtvoltage</var><str>None</str></equal></not>
+        <concat>
+          <icon><str>minecraft:redstone</str></icon>
+          <concat>
+            <str> {gold}[GT] {darkgray}| {gold}Tier Reached: </str>
+            <if>
+              <equal><var>gtvoltage</var><str>ULV</str></equal>
+              <str>{gray}ULV</str>
+              <if>
+                <equal><var>gtvoltage</var><str>LV</str></equal>
+                <str>{white}LV</str>
+                <if>
+                  <equal><var>gtvoltage</var><str>MV</str></equal>
+                  <str>{yellow}MV</str>
+                  <if>
+                    <equal><var>gtvoltage</var><str>HV</str></equal>
+                    <str>{gold}HV</str>
+                    <if>
+                      <equal><var>gtvoltage</var><str>EV</str></equal>
+                      <str>{green}EV</str>
+                      <if>
+                        <equal><var>gtvoltage</var><str>IV</str></equal>
+                        <str>{aqua}IV</str>
+                        <if>
+                          <equal><var>gtvoltage</var><str>LuV</str></equal>
+                          <str>{lightpurple}LuV</str>
+                          <if>
+                            <equal><var>gtvoltage</var><str>ZPM</str></equal>
+                            <str>{darkpurple}ZPM</str>
+                            <if>
+                              <equal><var>gtvoltage</var><str>UV</str></equal>
+                              <str>{blue}UV</str>
+                              <str>{red}{gtvoltage}</str>
+                            </if>
+                          </if>
+                        </if>
+                      </if>
+                    </if>
+                  </if>
+                </if>
+              </if>
+            </if>
+          </concat>
+        </concat>
+      </if>
+    </line>
+
+    <!-- Separator -->
+    <line><str>{black}</str></line>
+
+    <!-- Special: Slime Chunk / Chunk Center (combined, hidden when neither) -->
+    <line>
+      <if>
+        <equal><var>slimes</var><str>true</str></equal>
+        <concat>
+          <icon><str>textures/items/slimeball.png</str></icon>
+          <str> {white}This is a {darkgreen}Slime Chunk{white}!</str>
+          <if>
+            <and>
+              <equal><var>chunkoffsetx</var><num>7</num></equal>
+              <equal><var>chunkoffsetz</var><num>7</num></equal>
+            </and>
+            <str> {white}| {gold}Chunk Center</str>
+          </if>
+        </concat>
+        <if>
+          <and>
+            <equal><var>chunkoffsetx</var><num>7</num></equal>
+            <equal><var>chunkoffsetz</var><num>7</num></equal>
+          </and>
+          <concat>
+            <icon><str>minecraft:obsidian</str></icon>
+            <str> {white}You are at the {gold}Chunk Center{white}!</str>
+          </concat>
+        </if>
+      </if>
+    </line>
+
+    <!-- GregTech: Ore Chunk Alert (hidden when not a GT ore chunk) -->
+    <line>
+      <if>
+        <equal><var>gtorchunk</var><str>true</str></equal>
+        <concat>
+          <icon><str>minecraft:iron_ore</str></icon>
+          <str> {white}This is a {gold}GT Ore Chunk{white}!</str>
+        </concat>
+      </if>
+    </line>
+
+    <!-- GregTech: Dead Vein Alert (grid center with no ores) -->
+    <line>
+      <if>
+        <equal><var>gtdeadvein</var><str>true</str></equal>
+        <concat>
+          <icon><str>minecraft:barrier</str></icon>
+          <str> {white}This is a {gray}Dead Vein{white} (no ores spawned)</str>
+        </concat>
+      </if>
+    </line>
+
+    <!-- Separator -->
+    <line><str>{black}</str></line>
+
+    <!-- Equipment: Main Hand -->
+    <line>
+      <if>
+        <not><equal><var>mainhandname</var><str/></equal></not>
+        <concat>
+          <var>mainhandlargeicon</var>
+          <if>
+            <greater><var>mainhandmaxdamage</var><num>0</num></greater>
+            <concat>
+              <str> </str>
+              <op>
+                <str>ge</str>
+                <pct><var>mainhanddamageleft</var><var>mainhandmaxdamage</var></pct>
+                <num>50</num><num>20</num><num>10</num><num>0</num>
+                <str>{yellow}</str><str>{gold}</str><str>{red}</str><str>{darkred}</str><str/>
+              </op>
+              <str>{mainhanddamageleft}{white}/{yellow}{mainhandmaxdamage}</str>
+            </concat>
+          </if>
+        </concat>
+      </if>
+    </line>
+
+    <!-- Equipment: Helmet -->
+    <line>
+      <if>
+        <not><equal><var>helmetname</var><str/></equal></not>
+        <concat>
+          <var>helmetlargeicon</var>
+          <if>
+            <greater><var>helmetmaxdamage</var><num>0</num></greater>
+            <concat>
+              <str> </str>
+              <op>
+                <str>ge</str>
+                <pct><var>helmetdamageleft</var><var>helmetmaxdamage</var></pct>
+                <num>50</num><num>20</num><num>10</num><num>0</num>
+                <str>{yellow}</str><str>{gold}</str><str>{red}</str><str>{darkred}</str><str/>
+              </op>
+              <str>{helmetdamageleft}{white}/{yellow}{helmetmaxdamage}</str>
+            </concat>
+          </if>
+        </concat>
+      </if>
+    </line>
+
+    <!-- Equipment: Chestplate -->
+    <line>
+      <if>
+        <not><equal><var>chestplatename</var><str/></equal></not>
+        <concat>
+          <var>chestplatelargeicon</var>
+          <if>
+            <greater><var>chestplatemaxdamage</var><num>0</num></greater>
+            <concat>
+              <str> </str>
+              <op>
+                <str>ge</str>
+                <pct><var>chestplatedamageleft</var><var>chestplatemaxdamage</var></pct>
+                <num>50</num><num>20</num><num>10</num><num>0</num>
+                <str>{yellow}</str><str>{gold}</str><str>{red}</str><str>{darkred}</str><str/>
+              </op>
+              <str>{chestplatedamageleft}{white}/{yellow}{chestplatemaxdamage}</str>
+            </concat>
+          </if>
+        </concat>
+      </if>
+    </line>
+
+    <!-- Equipment: Leggings -->
+    <line>
+      <if>
+        <not><equal><var>leggingsname</var><str/></equal></not>
+        <concat>
+          <var>leggingslargeicon</var>
+          <if>
+            <greater><var>leggingsmaxdamage</var><num>0</num></greater>
+            <concat>
+              <str> </str>
+              <op>
+                <str>ge</str>
+                <pct><var>leggingsdamageleft</var><var>leggingsmaxdamage</var></pct>
+                <num>50</num><num>20</num><num>10</num><num>0</num>
+                <str>{yellow}</str><str>{gold}</str><str>{red}</str><str>{darkred}</str><str/>
+              </op>
+              <str>{leggingsdamageleft}{white}/{yellow}{leggingsmaxdamage}</str>
+            </concat>
+          </if>
+        </concat>
+      </if>
+    </line>
+
+    <!-- Equipment: Boots -->
+    <line>
+      <if>
+        <not><equal><var>bootsname</var><str/></equal></not>
+        <concat>
+          <var>bootslargeicon</var>
+          <if>
+            <greater><var>bootsmaxdamage</var><num>0</num></greater>
+            <concat>
+              <str> </str>
+              <op>
+                <str>ge</str>
+                <pct><var>bootsdamageleft</var><var>bootsmaxdamage</var></pct>
+                <num>50</num><num>20</num><num>10</num><num>0</num>
+                <str>{yellow}</str><str>{gold}</str><str>{red}</str><str>{darkred}</str><str/>
+              </op>
+              <str>{bootsdamageleft}{white}/{yellow}{bootsmaxdamage}</str>
+            </concat>
+          </if>
+        </concat>
+      </if>
+    </line>
+
+  </lines>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  BOTTOM RIGHT — Active Potion Effects                  -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <lines at="bottomright">
+    <line><max><var>potiondurationticks0</var><num>0.5</num><str>{potionduration0} {potionicon0}</str><str/></max></line>
+    <line><max><var>potiondurationticks1</var><num>0.5</num><str>{potionduration1} {potionicon1}</str><str/></max></line>
+    <line><max><var>potiondurationticks2</var><num>0.5</num><str>{potionduration2} {potionicon2}</str><str/></max></line>
+    <line><max><var>potiondurationticks3</var><num>0.5</num><str>{potionduration3} {potionicon3}</str><str/></max></line>
+    <line><max><var>potiondurationticks4</var><num>0.5</num><str>{potionduration4} {potionicon4}</str><str/></max></line>
+    <line><max><var>potiondurationticks5</var><num>0.5</num><str>{potionduration5} {potionicon5}</str><str/></max></line>
+    <line><max><var>potiondurationticks6</var><num>0.5</num><str>{potionduration6} {potionicon6}</str><str/></max></line>
+    <line><max><var>potiondurationticks7</var><num>0.5</num><str>{potionduration7} {potionicon7}</str><str/></max></line>
+    <line><max><var>potiondurationticks8</var><num>0.5</num><str>{potionduration8} {potionicon8}</str><str/></max></line>
+  </lines>
+
+</config>
