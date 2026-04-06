@@ -77,4 +77,11 @@ dependencies {
     runtimeOnly rfg.deobf('curse.maven:guide-api-228832:2645992')
     implementation rfg.deobf('curse.maven:serene-seasons-291874:2799213')
     implementation rfg.deobf('curse.maven:tough-as-nails-246391:2710969')
+    implementation rfg.deobf('curse.maven:gregtech-ce-unofficial-557242:5519022')
+    runtimeOnly rfg.deobf('curse.maven:codechicken-lib-1-8-242818:2779848')
+
+    // Testing dependencies
+    runtimeOnly rfg.deobf('curse.maven:journeymap-32274:5172461')
+    runtimeOnly rfg.deobf('curse.maven:visualores-895539:4904326')
+    // RTG cannot be served by CurseMaven (distribution restricted) — download manually from CurseForge and place in run/mods/ for testing
 }
